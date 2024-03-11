@@ -1,6 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
+
+//using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,10 +13,9 @@ public class GameManager : MonoBehaviour
     public List<Card> deck = new List<Card>();
     public List<Card> player_deck = new List<Card>();
     public List<Card> ai_deck = new List<Card>();
-    public List<Card> player_hand = new List<Card>();
+    public List<Card> playerHand = new List<Card>();
     public List<Card> ai_hand = new List<Card>();
     public List<Card> discard_pile = new List<Card>();
-
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -27,7 +31,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        int playerDraw = 2;
+        for (int x = 0; x < playerDraw; x++)
+        {
+            int drawCard = Random.Range(1, deck.Count);
+            Debug.Log(deck[drawCard].value);
+            playerHand.Add(deck[drawCard]);
+            deck.Remove(deck[drawCard]);
+        }
     }
 
     // Update is called once per frame
@@ -50,8 +61,4 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
-
-
-    
 }

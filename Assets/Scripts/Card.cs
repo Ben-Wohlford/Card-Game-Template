@@ -8,34 +8,36 @@ public class Card : MonoBehaviour
 {
     public Card_data data;
 
-    public string card_name;
-    public string description;
-    public int health;
-    public int cost;
-    public int damage;
+    //public string card_name;
+    //public string description;
+    //public int health;
+    //public int cost;
+    public int value;
+    public bool isAce;
     public Sprite sprite;
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI healthText;
-    public TextMeshProUGUI costText;
-    public TextMeshProUGUI damageText;
+    //public TextMeshProUGUI nameText;
+    //public TextMeshProUGUI descriptionText;
+    //public TextMeshProUGUI healthText;
+    //public TextMeshProUGUI costText;
+    //public TextMeshProUGUI valueText;
     public Image spriteImage;
         
 
     // Start is called before the first frame update
     void Start()
     {
-        card_name = data.card_name;
-        description = data.description;
-        health = data.health;
-        cost = data.cost;
-        damage = data.damage;
+        //card_name = data.card_name;
+        //description = data.description;
+        //health = data.health;
+        //cost = data.cost;
+        value = data.value;
+        isAce = data.isAce;
         sprite = data.sprite;
-        nameText.text = card_name;
-        descriptionText.text = description;
-        healthText.text = health.ToString();
-        costText.text = cost.ToString();
-        damageText.text = damage.ToString();
+        //nameText.text = card_name;
+        //descriptionText.text = description;
+        //healthText.text = health.ToString();
+        //costText.text = cost.ToString();
+        //valueText.text = value.ToString();
         spriteImage.sprite = sprite;
 
     }
