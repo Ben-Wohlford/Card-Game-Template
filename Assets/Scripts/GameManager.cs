@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         int playerDraw = 2;
         for (int x = 0; x < playerDraw; x++)
         {
-            int drawCard = Random.Range(1, deck.Count);
+            int drawCard = Random.Range(0, deck.Count-1);
             Debug.Log(deck[drawCard].value);
             playerHand.Add(deck[drawCard]);
             deck.Remove(deck[drawCard]);
