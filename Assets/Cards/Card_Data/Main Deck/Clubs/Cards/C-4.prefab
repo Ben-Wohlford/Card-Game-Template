@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 970200069765969068}
   - component: {fileID: 4608709814338197990}
   m_Layer: 0
-  m_Name: D-8
+  m_Name: C-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 139944937306382617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -150, y: 65, z: 0}
+  m_LocalPosition: {x: -750, y: -135, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa534983bed543169ce438dfad802a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 18efe6adf8b1e4bfeb30f70aa3575a1d, type: 2}
-  value: 8
+  data: {fileID: 11400000, guid: 5815493c4aabf4fe795634c531daff50, type: 2}
+  value: 4
   isAce: 0
   sprite: {fileID: 0}
   spriteImage: {fileID: 8706265603331512291}

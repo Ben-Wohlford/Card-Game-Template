@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 211ed4b916fb34eb4b672da4ccc09cbf, type: 2}
-  value: 2
+  value: 6
   isAce: 0
   sprite: {fileID: 0}
   spriteImage: {fileID: 8706265603331512291}
