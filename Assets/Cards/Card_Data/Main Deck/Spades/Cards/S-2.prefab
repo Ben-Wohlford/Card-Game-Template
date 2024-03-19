@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 139944937306382617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1050, y: 65, z: 0}
+  m_LocalPosition: {x: -1050, y: -335, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa534983bed543169ce438dfad802a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 94b8eb34918ba408c8ba55a535e2d3c6, type: 2}
+  data: {fileID: 11400000, guid: 5896267ccbea44cce9fb96cb4cdb3058, type: 2}
   value: 2
   isAce: 0
   sprite: {fileID: 0}
