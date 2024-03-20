@@ -9,7 +9,6 @@ public class Card : MonoBehaviour
     public Card_data data;
 
     public int value;
-    public bool isAce;
     public Sprite sprite;
     public Image spriteImage;
         
@@ -18,7 +17,6 @@ public class Card : MonoBehaviour
     void Start()
     {
         value = data.value;
-        isAce = data.isAce;
         sprite = data.sprite;
         spriteImage.sprite = sprite;
     }

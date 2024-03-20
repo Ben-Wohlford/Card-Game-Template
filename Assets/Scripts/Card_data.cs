@@ -6,6 +6,5 @@ using UnityEngine;
 public class Card_data : ScriptableObject
 {
     public int value;
-    public bool isAce;
     public Sprite sprite;
 }

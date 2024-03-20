@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawButtonScript : MonoBehaviour
+public class EndTurnButton : MonoBehaviour
 {
     public bool isClicked;
     // Start is called before the first frame update
@@ -10,15 +10,15 @@ public class DrawButtonScript : MonoBehaviour
     {
         
     }
+
     // Update is called once per frame
     void Update()
     {
         
     }
-
     public void OnButtonPress(){;
         isClicked = true;
-        Debug.Log("Draw Card");
+        Debug.Log("End Turn");
         isClicked = false;
     }
 }

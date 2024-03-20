@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour
 
     public DrawButtonScript drawButton;
     public bool drawCard;
-    private bool isPlayerTurn;
+    public bool isClicked;
+
+    public EndTurnButton endTurnButton;
+    public bool etIsClicked;
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -41,22 +44,13 @@ public class GameManager : MonoBehaviour
     {
         Canvas = GameObject.Find("Canvas");
         Deal();
-        isPlayerTurn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isPlayerTurn)
-        {
-            PlayerTurn();
-        }
-        else
-        {
-            AITurn();
-        }
+        
     }
-
     void Deal()
     {
         int draw = 2;
@@ -108,22 +102,37 @@ public class GameManager : MonoBehaviour
         Debug.Log("AI Sum: " + aiSum);
     }
 
-    void PlayerTurn()
+    public void PlayerTurn()
     {
-        drawCard = drawButton.isClicked;
-        if (drawCard)
+        Debug.Log("Draw Card");
+        int drawCard = Random.Range(0, deck.Count);
+        Card current = Instantiate(deck[drawCard], new Vector3(200+(playerHand.Count*150), 100, 0), quaternion.identity);
+        current.transform.SetParent(Canvas.transform);
+        Debug.Log("Card: " + deck[drawCard].value);
+        playerSum += deck[drawCard].value;
+        Debug.Log("playerSum: " + playerSum);
+        playerHand.Add(deck[drawCard]);
+        deck.Remove(deck[drawCard]);
+        if (playerSum > 21)
         {
-            int drawCard = Random.Range(0, deck.Count);
-            Card current = Instantiate(deck[drawCard], new Vector3(200+(playerHand.Count*150), 100, 0), quaternion.identity);
-            current.transform.SetParent(Canvas.transform);
-            Debug.Log("Card: " + deck[drawCard].value);
-            playerHand.Add(deck[drawCard]);
-            deck.Remove(deck[drawCard]);
+            Debug.Log("You lose!");
         }
     }
     
-    void AITurn()
+    public void AITurn()
     {
-
+        Debug.Log("AI Draws Card");
+        int drawCard = Random.Range(0, deck.Count);
+        GameObject aicurrent = Instantiate(cardBack, new Vector3(200+((aiHand.Count)*150), 550, 0), quaternion.identity);
+        aicurrent.transform.SetParent(Canvas.transform);
+        Debug.Log("AI Card: " + deck[drawCard].value);
+        aiSum += deck[drawCard].value;
+        Debug.Log("aiSum: " + aiSum);
+        aiHand.Add(deck[drawCard]);
+        deck.Remove(deck[drawCard]);
+        if (aiSum > 21)
+        {
+            Debug.Log("You win!");
+        }
     }
 }

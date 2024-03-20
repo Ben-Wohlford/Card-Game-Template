@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3274347587790848500}
   - component: {fileID: -2566949696407291109}
   m_Layer: 0
-  m_Name: DrawButton
+  m_Name: EndTurnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
