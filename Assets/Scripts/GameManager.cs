@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private bool p10;
     private bool a10;
 
+    public Button drawCard;
     public Button endTurn;
     public Button blackjack;
     private void Awake()
@@ -41,12 +42,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Hello!");
         blackjack.interactable = false;
         p10 = false;
         Canvas = GameObject.Find("Canvas");
         Deal();
     }
-
     void Deal()
     {
         //Draw initial cards for player and COM
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
         for (int x = 0; x < draw; x++)
         {
             int drawCard = Random.Range(0, deck.Count);
-            Card current = Instantiate(deck[drawCard], new Vector3(200+(x*150), 100, 0), quaternion.identity);
+            Card current = Instantiate(deck[drawCard], new Vector3(100+(x*150), 100, 0), quaternion.identity);
             current.transform.SetParent(Canvas.transform);
             Debug.Log("Card: " + deck[drawCard].value);
             playerHand.Add(deck[drawCard]);
@@ -65,9 +66,9 @@ public class GameManager : MonoBehaviour
             deck.Remove(deck[drawAICard]);
         }
         //Spawn cards
-        Card first = Instantiate(aiHand[0], new Vector3(200, 550, 0), quaternion.identity);
+        Card first = Instantiate(aiHand[0], new Vector3(100, 550, 0), quaternion.identity);
         first.transform.SetParent(Canvas.transform);
-        GameObject second = Instantiate(cardBack, new Vector3(350, 550, 0), quaternion.identity);
+        GameObject second = Instantiate(cardBack, new Vector3(250, 550, 0), quaternion.identity);
         second.transform.SetParent(Canvas.transform);
         //Find inital hand values
         for (int x = 0; x < playerHand.Count; x++)
@@ -116,7 +117,7 @@ public class GameManager : MonoBehaviour
         //Draw card
         Debug.Log("Draw Card");
         int drawCard = Random.Range(0, deck.Count);
-        Card current = Instantiate(deck[drawCard], new Vector3(200+(playerHand.Count*150), 100, 0), quaternion.identity);
+        Card current = Instantiate(deck[drawCard], new Vector3(100+(playerHand.Count*150), 100, 0), quaternion.identity);
         current.transform.SetParent(Canvas.transform);
         Debug.Log("Card: " + deck[drawCard].value);
         playerSum += deck[drawCard].value;
@@ -125,9 +126,10 @@ public class GameManager : MonoBehaviour
         //Ace check
         for (int x = 0; x < playerHand.Count; x++)
         {
-            if (playerHand[x].value == 1 && playerSum < 12)
+            if (playerHand[x].value == 1 && playerSum < 12 && p10 == false)
             {
                 playerSum += 10;
+                p10 = true;
                 break;
             }
             else if (playerHand[x].value == 1 && playerSum > 21 && p10)
@@ -147,12 +149,12 @@ public class GameManager : MonoBehaviour
     public void AITurn()
     {
         //Draw card
-        endTurn.interactable = false;
+        drawCard.interactable = false;
         if (aiSum < 17)
         {
             Debug.Log("AI Draws Card");
             int drawCard = Random.Range(0, deck.Count);
-            GameObject aicurrent = Instantiate(cardBack, new Vector3(200 + ((aiHand.Count) * 150), 550, 0),
+            GameObject aicurrent = Instantiate(cardBack, new Vector3(100 + ((aiHand.Count) * 150), 550, 0),
                 quaternion.identity);
             aicurrent.transform.SetParent(Canvas.transform);
             Debug.Log("AI Card: " + deck[drawCard].value);
@@ -185,16 +187,15 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
         }
-        if (aiSum > 21)
-        {
-            EndGame();
-        }
     }
     public void EndGame()
     {
+        blackjack.interactable = false;
+        endTurn.interactable = false;
+        drawCard.interactable = false;
         for (int x = 1; x < aiHand.Count; x++)
         {
-            Card reveal = Instantiate(aiHand[x], new Vector3(200 + (x * 150), 550, 0), quaternion.identity);
+            Card reveal = Instantiate(aiHand[x], new Vector3(100 + (x * 150), 550, 0), quaternion.identity);
             reveal.transform.SetParent(Canvas.transform);
         }
         if (playerSum > aiSum && playerSum < 22)

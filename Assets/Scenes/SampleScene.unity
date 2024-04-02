@@ -192,7 +192,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5526206, g: 1, b: 0.5424528, a: 1}
     m_PressedColor: {r: 0.014675091, g: 0.6603774, b: 0, a: 1}
     m_SelectedColor: {r: 0.015686275, g: 0.6627451, b: 0, a: 1}
-    m_DisabledColor: {r: 0.00738113, g: 0.3490566, b: 0, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1313,7 +1313,8 @@ MonoBehaviour:
   - {fileID: 4608709814338197990, guid: c1e750730727e4cde88a9883b35ab8db, type: 3}
   playerHand: []
   aiHand: []
-  endTurn: {fileID: 1001886980}
+  drawCard: {fileID: 1001886980}
+  endTurn: {fileID: 2133305867}
   blackjack: {fileID: 20567240}
 --- !u!4 &622756966
 Transform:
@@ -2173,7 +2174,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.4009434, g: 0.7582442, b: 1, a: 1}
     m_PressedColor: {r: 0.0990566, g: 0.6349117, b: 1, a: 1}
     m_SelectedColor: {r: 0.101960786, g: 0.63529414, b: 1, a: 1}
-    m_DisabledColor: {r: 0, g: 0.26110765, b: 0.41509432, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
