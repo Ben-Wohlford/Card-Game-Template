@@ -21,30 +21,33 @@ public class GameManager : MonoBehaviour
     private int playerSum;
     public List<Card> aiHand = new List<Card>();
     private int aiSum;
+    
     private bool p10;
     private bool a10;
+    private bool canBJ;
 
     public Button drawCard;
     public Button endTurn;
     public Button blackjack;
-    private void Awake()
-    {
-        if (gm != null && gm != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            gm = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
-    // Start is called before the first frame update
+    // private void Awake()
+    // {
+    //     if (gm != null && gm != this)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    //     else
+    //     {
+    //         gm = this;
+    //         DontDestroyOnLoad(this.gameObject);
+    //     }
+    // }
     void Start()
     {
-        Debug.Log("Hello!");
+        //Debug.Log("Hello!");
+        canBJ = true;
         blackjack.interactable = false;
         p10 = false;
+        a10 = false;
         Canvas = GameObject.Find("Canvas");
         Deal();
     }
@@ -57,11 +60,11 @@ public class GameManager : MonoBehaviour
             int drawCard = Random.Range(0, deck.Count);
             Card current = Instantiate(deck[drawCard], new Vector3(100+(x*150), 100, 0), quaternion.identity);
             current.transform.SetParent(Canvas.transform);
-            Debug.Log("Card: " + deck[drawCard].value);
+            //Debug.Log("Card: " + deck[drawCard].value);
             playerHand.Add(deck[drawCard]);
             deck.Remove(deck[drawCard]);
             int drawAICard = Random.Range(0, deck.Count);
-            Debug.Log("AI Card: " + deck[drawAICard].value);
+            //Debug.Log("AI Card: " + deck[drawAICard].value);
             aiHand.Add(deck[drawAICard]);
             deck.Remove(deck[drawAICard]);
         }
@@ -96,16 +99,22 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-        Debug.Log("Sum: " + playerSum);
-        Debug.Log("AI Sum: " + aiSum);
+        //Debug.Log("Sum: " + playerSum);
+        //Debug.Log("AI Sum: " + aiSum);
     }
-    // Update is called once per frame
     void Update()
     {
-        //Allow blackjack
-        if (playerSum == 21 && playerHand.Count == 2)
+        if (canBJ)
         {
-            blackjack.interactable = true;
+            //Allow blackjack
+            if (playerSum == 21 && playerHand.Count == 2)
+            {
+                blackjack.interactable = true;
+            }
+            else
+            {
+                blackjack.interactable = false;
+            }
         }
         else
         {
@@ -115,11 +124,11 @@ public class GameManager : MonoBehaviour
     public void PlayerTurn()
     {
         //Draw card
-        Debug.Log("Draw Card");
+        //Debug.Log("Draw Card");
         int drawCard = Random.Range(0, deck.Count);
         Card current = Instantiate(deck[drawCard], new Vector3(100+(playerHand.Count*150), 100, 0), quaternion.identity);
         current.transform.SetParent(Canvas.transform);
-        Debug.Log("Card: " + deck[drawCard].value);
+        //Debug.Log("Card: " + deck[drawCard].value);
         playerSum += deck[drawCard].value;
         playerHand.Add(deck[drawCard]);
         deck.Remove(deck[drawCard]);
@@ -132,14 +141,14 @@ public class GameManager : MonoBehaviour
                 p10 = true;
                 break;
             }
-            else if (playerHand[x].value == 1 && playerSum > 21 && p10)
+            if (playerHand[x].value == 1 && playerSum > 21 && p10)
             {
                 playerSum -= 10;
                 p10 = false;
                 break;
             }
         }
-        Debug.Log("playerSum: " + playerSum);
+        //Debug.Log("playerSum: " + playerSum);
         //Over 21
         if (playerSum > 21)
         {
@@ -152,12 +161,12 @@ public class GameManager : MonoBehaviour
         drawCard.interactable = false;
         if (aiSum < 17)
         {
-            Debug.Log("AI Draws Card");
+            //Debug.Log("AI Draws Card");
             int drawCard = Random.Range(0, deck.Count);
             GameObject aicurrent = Instantiate(cardBack, new Vector3(100 + ((aiHand.Count) * 150), 550, 0),
                 quaternion.identity);
             aicurrent.transform.SetParent(Canvas.transform);
-            Debug.Log("AI Card: " + deck[drawCard].value);
+            //Debug.Log("AI Card: " + deck[drawCard].value);
             aiSum += deck[drawCard].value;
             aiHand.Add(deck[drawCard]);
             deck.Remove(deck[drawCard]);
@@ -167,21 +176,56 @@ public class GameManager : MonoBehaviour
                 if (aiHand[x].value == 1 && aiSum < 12)
                 {
                     aiSum += 10;
+                    a10 = true;
                     break;
                 }
                 else if (aiHand[x].value == 1 && aiSum > 21 && a10)
                 {
                     aiSum -= 10;
-                    p10 = false;
+                    a10 = false;
                     break;
                 }
             }
-            Debug.Log("aiSum: " + aiSum);
+            //Debug.Log("aiSum: " + aiSum);
             //Stop drawing
             if (aiSum > 16)
             {
                 EndGame();
             }
+        }
+        else if (aiSum > 26 && a10)
+        {
+            //Debug.Log("AI Draws Card");
+            int drawCard = Random.Range(0, deck.Count);
+            GameObject aicurrent = Instantiate(cardBack, new Vector3(100 + ((aiHand.Count) * 150), 550, 0),
+                quaternion.identity);
+            aicurrent.transform.SetParent(Canvas.transform);
+            //Debug.Log("AI Card: " + deck[drawCard].value);
+            aiSum += deck[drawCard].value;
+            aiHand.Add(deck[drawCard]);
+            deck.Remove(deck[drawCard]);
+            //Ace check
+            for (int x = 0; x < aiHand.Count; x++)
+            {
+                if (aiHand[x].value == 1 && aiSum < 12)
+                {
+                    aiSum += 10;
+                    a10 = true;
+                    break;
+                }
+                else if (aiHand[x].value == 1 && aiSum > 21 && a10)
+                {
+                    aiSum -= 10;
+                    a10 = false;
+                    break;
+                }
+            }
+            //Debug.Log("aiSum: " + aiSum);
+            //Stop drawing
+            if (aiSum > 16)
+            {
+                EndGame();
+            } 
         }
         else
         {
@@ -191,8 +235,11 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         blackjack.interactable = false;
+        canBJ = false;
         endTurn.interactable = false;
         drawCard.interactable = false;
+        Debug.Log("Player sum: " + playerSum);
+        Debug.Log("AI sum: " + aiSum);
         for (int x = 1; x < aiHand.Count; x++)
         {
             Card reveal = Instantiate(aiHand[x], new Vector3(100 + (x * 150), 550, 0), quaternion.identity);

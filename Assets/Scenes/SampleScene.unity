@@ -1051,7 +1051,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.21466435, g: 0.4745098, b: 0.19215688, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3991,6 +3991,18 @@ PrefabInstance:
     - target: {fileID: 139944937306382617, guid: 6b7151203adb74816a39e65fe02eb44a, type: 3}
       propertyPath: m_Name
       value: Card_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 970200069765969068, guid: 6b7151203adb74816a39e65fe02eb44a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 970200069765969068, guid: 6b7151203adb74816a39e65fe02eb44a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 970200069765969068, guid: 6b7151203adb74816a39e65fe02eb44a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 970200069765969068, guid: 6b7151203adb74816a39e65fe02eb44a, type: 3}
       propertyPath: m_LocalPosition.x
